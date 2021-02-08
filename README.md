@@ -18,6 +18,8 @@
 - 1 x "*Arduino Mega*"
 - 1 x "*Breadboard*"
 
-## Video illustration
+## Video illustration (French)
 
-- [LCD Screen] (https://web.microsoftstream.com/video/7894f017-e752-4dbd-b5ec-eb1f9d7ce354?list=studio)
+- LCD Screen - https://web.microsoftstream.com/video/7894f017-e752-4dbd-b5ec-eb1f9d7ce354?list=studio
+- CD4511 - https://web.microsoftstream.com/video/1423f499-abe4-4101-8008-dac4a25e240f?list=studio
+- 74HC08 - https://web.microsoftstream.com/video/42f94811-8ea7-4adb-a83f-495f3c707a06?list=studio
