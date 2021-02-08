@@ -3,6 +3,7 @@
 ## Introduction
 
 Hello, we're working on a funny model of a detonator based on Arduino. There are several files.
+
 - The [Main](https://github.com/katseyres/project_detonator/tree/main/Main) folder contains the code (C++). 
 - The [Frizting electronic diagram](https://github.com/katseyres/project_detonator/blob/main/electronic_diagram.fzz) and the [pdf](https://github.com/katseyres/project_detonator/blob/main/electronic_diagram.pdf).
 - A [Word document](https://github.com/katseyres/project_detonator/blob/main/project_description.docx) in french describes the project process.
