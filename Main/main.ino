@@ -30,10 +30,6 @@ void setup()
   Serial.println(F("Initialize system"));
 
   CD4511_SetPins();
-
-//   lcd.begin(16, 2);
-//   lcd.setCursor(0, 0);
-//   lcd.print("Enter password : ");
 }
 
 void loop()
@@ -43,6 +39,8 @@ void loop()
 
   delay(10);
 }
+
+/* ---------------------------------------------------------------- */
 
 bool KEYPAD_4x4_ReadInput()
 {
