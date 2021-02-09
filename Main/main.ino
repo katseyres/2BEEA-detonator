@@ -18,26 +18,43 @@ Keypad kp4x4 = Keypad(makeKeymap(kp4x4Keys),KEYPAD_4x4_rowPin, KEYPAD_4x4_colPin
 
 int counter = 0;
 char userInput[PASSWORD_LENGTH];
-char password[PASSWORD_LENGTH] = "5170";
+char password[PASSWORD_LENGTH] = {'5', '1', '7', '0'};
 bool isPasswordTrue;
 
 LiquidCrystal lcd(4, 6, 11, 12, 13, 14);
 
+/* ---------------------------------------------------------------- */
 
 void setup()
 {
   Serial.begin(9600);
   Serial.println(F("Initialize system"));
+  lcd.begin(16, 2);
+  lcd.setCursor(0, 0);
 
   CD4511_SetPins();
+
+  lcd.print("PASSWORD : ");
 }
 
 void loop()
 {
   bool password = KEYPAD_4x4_ReadInput();
-  
 
-  delay(10);
+  if (digitalRead(7) == HIGH)
+  {
+    if (password)
+    {
+      CD4511_StartCounter();
+    }
+  }
+  else
+  {
+    lcd.clear();
+    lcd.print("TURN ON THE SWITCH");
+  }
+
+    delay(10);
 }
 
 /* ---------------------------------------------------------------- */
@@ -48,14 +65,14 @@ bool KEYPAD_4x4_ReadInput()
 
   if(customKey)
   {
-    Serial.print("*");
+    lcd.print("*");
     userInput[counter] = customKey;
     counter++;
   }
 
   if(counter == PASSWORD_LENGTH)
   {
-    Serial.println("");
+    lcd.clear();
     isPasswordTrue = true;
     counter = 0;
 
@@ -69,11 +86,21 @@ bool KEYPAD_4x4_ReadInput()
     }
 
     if (isPasswordTrue)
-      Serial.println("CORRECT");
+    {
+      lcd.print("PASSWORD CORRECT");
+      delay(1000);
+      lcd.clear();
+      lcd.print("ARMED !");
       return true;
+    }
     else
-      Serial.println("INCORRECT");
+    {
+      lcd.print("INCORRECT");
+      delay(1000);
+      lcd.clear();
+      lcd.print("PASSWORD : ");
       return false;
+    }
 
     char userInput[4];
   }
@@ -104,6 +131,10 @@ void CD4511_SetPins(){
   
   digitalWrite(49, HIGH); // Set LampTest and Blank at HIGH
   digitalWrite(50, HIGH);
+
+  //-----------------------
+
+  pinMode(7, INPUT); // Switch in INPUT mode
 
 }
 
@@ -175,4 +206,6 @@ void CD4511_StartCounter(){
   
   digitalWrite(2, LOW);
   digitalWrite(9, HIGH); // LED turned on (Explosion)
+  lcd.clear();
+  lcd.print("BOOM !");
 }
