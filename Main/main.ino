@@ -54,7 +54,7 @@ bool KEYPAD_4x4_ReadInput()
 
     if(customKey)
     {
-      Serial.print("*");
+      // Serial.print("*");
       lcd.print("*");
       userInput[counter] = customKey;
       counter++;
@@ -80,12 +80,12 @@ bool KEYPAD_4x4_ReadInput()
         lcd.clear();
         lcd.print("PASSWORD CORRECT");
         delay(2000);
+        lcd.clear();
+        lcd.print("TURN ON THE");
+        lcd.setCursor(0,1);
+        lcd.print("SWITCH");
         while (digitalRead(7) != HIGH)
         {
-          lcd.clear();
-          lcd.print("TURN ON THE");
-          lcd.setCursor(0,1);
-          lcd.print("SWITCH");
           delay(10);
         }
         lcd.clear();
@@ -136,7 +136,7 @@ void CD4511_SetPins(){
 
   //-----------------------
 
-  pinMode(7, OUTPUT); // Switch in INPUT mode
+  pinMode(7, OUTPUT); // Switch in OUTPUT mode
 
 }
 
