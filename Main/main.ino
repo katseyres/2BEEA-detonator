@@ -110,102 +110,114 @@ bool KEYPAD_4x4_ReadInput()
 
 void CD4511_SetPins(){
   
-  pinMode(38, OUTPUT);
-  pinMode(39, OUTPUT);
-  pinMode(40, OUTPUT);
-  pinMode(41, OUTPUT);
-  pinMode(42, OUTPUT);
-  pinMode(43, OUTPUT);
-  pinMode(44, OUTPUT);
+  //----------------------- CD4511 (1) units
 
-  digitalWrite(41, HIGH); // Set LampTest and Blank at HIGH
-  digitalWrite(42, HIGH);
+  pinMode(38, OUTPUT); // 1
+  pinMode(44, OUTPUT); // 2
+  pinMode(43, OUTPUT); // 4
+  pinMode(39, OUTPUT); // 8
+  pinMode(40, OUTPUT); // latch enable
+  pinMode(41, OUTPUT); // blank
+  pinMode(42, OUTPUT); // lamp test
 
-  //-----------------------
+  digitalWrite(41, HIGH); // blank at HIGH
+  digitalWrite(42, HIGH); // lamptest at HIGH
 
-  pinMode(46, OUTPUT);
-  pinMode(47, OUTPUT);
-  pinMode(48, OUTPUT);
-  pinMode(49, OUTPUT);
-  pinMode(50, OUTPUT);
-  pinMode(51, OUTPUT);
-  pinMode(52, OUTPUT);
-  
-  digitalWrite(49, HIGH); // Set LampTest and Blank at HIGH
-  digitalWrite(50, HIGH);
+  //----------------------- CD4511 (2) decades
 
-  //-----------------------
+  pinMode(46, OUTPUT); // 1
+  pinMode(52, OUTPUT); // 2
+  pinMode(51, OUTPUT); // 4
+  pinMode(47, OUTPUT); // 8
+  pinMode(48, OUTPUT); // latch enable
+  pinMode(49, OUTPUT); // blank
+  pinMode(50, OUTPUT); // lamp test
 
-  pinMode(7, OUTPUT); // Switch in OUTPUT mode
+  digitalWrite(49, HIGH); // blank at HIGH
+  digitalWrite(50, HIGH); // lamptest at HIGH
+
+  //----------------------- switch
+
+  pinMode(7, OUTPUT); // switch in OUTPUT mode
 
 }
 
 void CD4511_StartCounter(){
   
-  // 9
+  // 15
+  digitalWrite(46, HIGH);
+  digitalWrite(43, HIGH);
+  digitalWrite(38, HIGH);
+  delay(1000);
 
+  // 14
+  digitalWrite(38, LOW);
+  delay(1000);
+
+  // 13
+  digitalWrite(43, LOW);
+  digitalWrite(44, HIGH);
+  digitalWrite(38, HIGH);
+  delay(1000);
+
+  // 12
+  digitalWrite(38, LOW);
+  delay(1000);
+
+  // 11
+  digitalWrite(44, LOW);
+  digitalWrite(38, HIGH);
+  delay(1000);
+
+  // 10
+  digitalWrite(38, LOW);
+  delay(1000);
+
+  // 9
   digitalWrite(5, HIGH);
   digitalWrite(2, HIGH);
-  
   delay(1000);
 
   // 8
-  
   digitalWrite(2, LOW);
-  
   delay(1000);
   
   // 7
-
   digitalWrite(5, LOW);
   digitalWrite(4, HIGH);
   digitalWrite(3, HIGH);
   digitalWrite(2, HIGH);
-  
   delay(1000);
 
   // 6
-  
   digitalWrite(2, LOW);
-  
   delay(1000);
 
   // 5
-  
   digitalWrite(3, LOW);
   digitalWrite(2, HIGH);
-  
   delay(1000);
 
   // 4
-  
   digitalWrite(2, LOW);
-  
   delay(1000);
 
   // 3
-  
   digitalWrite(4, LOW);
   digitalWrite(3, HIGH);
   digitalWrite(2, HIGH);
-  
   delay(1000);
 
   // 2
-  
   digitalWrite(2, LOW);
-  
   delay(1000);
   
   // 1
-  
   digitalWrite(3, LOW);
   digitalWrite(2, HIGH);
-  
   delay(1000);
 
   // 0
-  
   digitalWrite(2, LOW);
   digitalWrite(9, HIGH); // LED turned on (Explosion)
   lcd.clear();
